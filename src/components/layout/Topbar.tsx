@@ -18,6 +18,10 @@ export function Topbar() {
         </span>
       </div>
 
+      <span className="whitespace-nowrap text-[10px] font-semibold text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded uppercase tracking-wider">
+        Dummy Data
+      </span>
+
       <div className="flex items-center gap-3 lg:gap-5 shrink-0 ml-auto">
         <div className="flex items-baseline gap-1.5 lg:gap-2 whitespace-nowrap">
           <span className="hidden sm:inline text-[10px] font-semibold text-stone-400 uppercase tracking-wider">
