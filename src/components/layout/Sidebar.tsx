@@ -7,7 +7,7 @@ import { LayoutDashboard, TrendingUp, Compass, Gauge } from "lucide-react";
 const navLinks = [
   { label: "Market Overview", href: "/overview", icon: LayoutDashboard },
   { label: "My Portfolio", href: "/portfolio", icon: TrendingUp },
-  { label: "Signal Analysis", href: "/signals", icon: Gauge },
+  { label: "Signals", href: "/signals", icon: Gauge },
   { label: "Scanner", href: "/discover", icon: Compass },
 ];
 
