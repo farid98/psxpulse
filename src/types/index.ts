@@ -15,6 +15,7 @@ export interface NewsItem {
   source: string;
   time: string;
   tags: string[];
+  sources: { name: string; snippet: string }[];
 }
 
 export interface SectorData {

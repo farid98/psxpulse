@@ -12,11 +12,9 @@ export function SectorSnapshot() {
 
   return (
     <div className="bg-white border border-stone-200/80 rounded-lg overflow-hidden">
-      <div className="px-5 py-4 border-b border-stone-100">
-        <h2 className="text-[13px] font-semibold text-stone-900 tracking-[-0.01em]">
-          Sector Snapshot
-        </h2>
-        <p className="text-[11px] text-stone-400 mt-0.5">Tap a sector for the recommendation basis</p>
+      <div className="bg-amber-800 px-5 py-3.5">
+        <h2 className="text-[13px] font-semibold text-white tracking-[-0.01em]">Sector Snapshot</h2>
+        <p className="text-[11px] text-amber-300/70 mt-0.5">Tap a sector for the recommendation basis</p>
       </div>
       <div className="divide-y divide-stone-100">
         {snapshot.map((sector) => {
