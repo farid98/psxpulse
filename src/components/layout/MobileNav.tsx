@@ -7,13 +7,14 @@ import {
   TrendingUp,
   Compass,
   Gauge,
+  Zap,
 } from "lucide-react";
 
 const mobileNavItems = [
+  { label: "Impact", href: "/impact", icon: Zap },
   { label: "Overview", href: "/overview", icon: LayoutDashboard },
-  { label: "Portfolio", href: "/portfolio", icon: TrendingUp },
   { label: "Signals", href: "/signals", icon: Gauge },
-  { label: "Scanner", href: "/discover", icon: Compass },
+  { label: "Portfolio", href: "/portfolio", icon: TrendingUp },
 ];
 
 export function MobileNav() {

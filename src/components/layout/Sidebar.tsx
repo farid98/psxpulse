@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, TrendingUp, Compass, Gauge } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Compass, Gauge, Zap } from "lucide-react";
 
 const navLinks = [
+  { label: "News Impact", href: "/impact", icon: Zap },
   { label: "Market Overview", href: "/overview", icon: LayoutDashboard },
-  { label: "My Portfolio", href: "/portfolio", icon: TrendingUp },
   { label: "Signals", href: "/signals", icon: Gauge },
-  { label: "Scanner", href: "/discover", icon: Compass },
+  { label: "My Portfolio", href: "/portfolio", icon: TrendingUp },
 ];
 
 export function Sidebar() {

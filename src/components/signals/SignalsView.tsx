@@ -99,27 +99,27 @@ export function SignalsView() {
       <div ref={wrapperRef} className="relative">
         <button
           onClick={() => setOpen((v) => !v)}
-          className="w-full bg-white border border-stone-200/80 rounded-lg px-4 pt-3 pb-2.5 text-left hover:border-stone-300 transition-colors"
+          className="w-full bg-white border border-stone-200/80 rounded-lg px-3 py-2 sm:px-4 sm:pt-3 sm:pb-2.5 text-left hover:border-stone-300 transition-colors"
         >
-          <div className="flex items-center gap-3">
-            <Search className="w-6 h-6 text-emerald-500 shrink-0" strokeWidth={2.5} />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Search className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500 shrink-0" strokeWidth={2.5} />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[20px] font-semibold text-stone-900 tracking-[-0.02em] leading-none">{data.ticker}</span>
+                <span className="text-[16px] sm:text-[20px] font-semibold text-stone-900 tracking-[-0.02em] leading-none">{data.ticker}</span>
                 <SignalBadge signal={data.recommendation} />
               </div>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-[12px] text-stone-400 truncate">{data.name}</span>
+                <span className="text-[11px] sm:text-[12px] text-stone-400 truncate">{data.name}</span>
                 <span className="text-stone-200">·</span>
-                <span className="text-[11px] text-stone-400 font-medium uppercase tracking-wider shrink-0">{data.sector}</span>
+                <span className="text-[10px] sm:text-[11px] text-stone-400 font-medium uppercase tracking-wider shrink-0">{data.sector}</span>
               </div>
             </div>
-            <div className="flex items-baseline gap-1.5 shrink-0">
-              <span className="text-[18px] font-semibold text-stone-900 tabular-nums leading-none tracking-[-0.02em]">{data.price.toFixed(2)}</span>
-              <span className={`text-[13px] font-semibold tabular-nums ${isUp ? "text-emerald-600" : "text-red-500"}`}>
+            <div className="flex items-baseline gap-1 sm:gap-1.5 shrink-0">
+              <span className="text-[15px] sm:text-[18px] font-semibold text-stone-900 tabular-nums leading-none tracking-[-0.02em]">{data.price.toFixed(2)}</span>
+              <span className={`text-[12px] sm:text-[13px] font-semibold tabular-nums ${isUp ? "text-emerald-600" : "text-red-500"}`}>
                 {isUp ? "▲ +" : "▼ "}{Math.abs(data.change).toFixed(1)}%
               </span>
-              <ChevronDown className={`w-4 h-4 text-stone-400 ml-1 transition-transform ${open ? "rotate-180" : ""}`} />
+              <ChevronDown className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-400 ml-1 transition-transform ${open ? "rotate-180" : ""}`} />
             </div>
           </div>
         </button>
@@ -170,6 +170,42 @@ export function SignalsView() {
           </div>
         )}
       </div>
+
+      {/* Deep Intel */}
+      {data.intel.length > 0 && (
+        <div className="bg-white border border-stone-200/80 rounded-lg overflow-hidden">
+          <div className="bg-stone-800 px-4 py-2.5">
+            <h3 className="text-[12px] font-semibold text-white tracking-[-0.01em]">Deep Intel</h3>
+            <p className="text-[10px] text-stone-400 mt-0.5">Discoveries from filings & announcements</p>
+          </div>
+          <div className="divide-y divide-stone-100">
+            {data.intel.map((item, i) => {
+              const critStyle =
+                item.criticality === "Price-Moving"
+                  ? "bg-amber-50 text-amber-700 border-amber-200"
+                  : item.criticality === "Watch"
+                  ? "bg-blue-50 text-blue-700 border-blue-200"
+                  : "bg-stone-100 text-stone-600 border-stone-200";
+              return (
+                <div key={i} className="px-4 py-3">
+                  <div className="flex items-start gap-2.5">
+                    <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded border uppercase tracking-wider shrink-0 mt-0.5 ${critStyle}`}>
+                      {item.criticality}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[12px] font-medium text-stone-900 leading-snug mb-1">{item.summary}</p>
+                      <p className="text-[11px] text-stone-500 leading-relaxed mb-2">{item.detail}</p>
+                      <p className="text-[10px] font-mono text-stone-400 bg-stone-50 px-2 py-1 rounded inline-block">
+                        {item.source} · {item.date}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* 4 score tabs — always 4 across */}
       <div className="grid grid-cols-4 gap-2">

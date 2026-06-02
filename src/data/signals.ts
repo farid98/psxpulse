@@ -41,8 +41,18 @@ export interface SignalsProfile {
     summary: string;
     strengths: string[];
     risks: string[];
+    supportingNews: { headline: string; source: string }[];
+    riskNews: { headline: string; source: string }[];
     timeHorizon: string;
   };
+
+  intel: {
+    summary: string;
+    source: string;
+    date: string;
+    criticality: "Price-Moving" | "Watch" | "Context";
+    detail: string;
+  }[];
 }
 
 const genTrend = (start: number, end: number, days: number, volatility = 0.02): number[] => {
@@ -140,8 +150,31 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Gas price formula revision could compress fertiliser margins",
         "PKR appreciation pressure on conglomerate's export-linked subsidiaries",
       ],
+      supportingNews: [
+        { headline: "SBP rate hold supports stable NIM environment for conglomerates", source: "Dawn" },
+        { headline: "IMF tranche clears — macro backdrop improves for large-caps", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "Gas feedstock cost revision under consideration by OGRA", source: "Business Recorder" },
+      ],
       timeHorizon: "6–12 months",
     },
+    intel: [
+      {
+        summary: "Engro Fertilizers quietly acquired 12,000 acres of agricultural land in Sindh for a new DAP blending facility",
+        source: "EFERT Q1-2026 Annual Report, p.34 ¶2",
+        date: "Mar 2026",
+        criticality: "Price-Moving",
+        detail: "The land acquisition was disclosed only in the capital commitments footnote. A DAP blending line would reduce import dependency and expand margins by an estimated 4–6% on fertiliser EBITDA — not reflected in any analyst model.",
+      },
+      {
+        summary: "Enfrashare (tower subsidiary) signed a 10-year colocation agreement with a third telco",
+        source: "ENGRO AGM Minutes 2025, p.12",
+        date: "Jun 2025",
+        criticality: "Watch",
+        detail: "A new anchor tenant on Enfrashare's 1,200 towers significantly improves the subsidiary's EBITDA. A separate listing or strategic sale is mentioned as a consideration in the minutes.",
+      },
+    ],
   },
 
   HBL: {
@@ -214,8 +247,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Regulatory tinkering with minimum saving rate floor",
         "Loan growth lagging sector — slower earnings recovery",
       ],
+      supportingNews: [
+        { headline: "SBP rate hold supports HBL NIM — sector-wide positive", source: "Dawn" },
+        { headline: "IMF tranche boosts sentiment for Pakistan large-caps", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "Minimum saving rate floor under SBP review", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months",
     },
+    intel: [
+      {
+        summary: "HBL's Konnect digital banking unit crossed 8M registered users — not separately disclosed in headline results",
+        source: "HBL Annual Report 2025, p.61 ¶4",
+        date: "Apr 2025",
+        criticality: "Watch",
+        detail: "Konnect's MAU growth of 34% YoY and improving ARPU suggests a standalone digital bank valuation could emerge. Peer Easypaisa was valued at ~$500M at its last round.",
+      },
+    ],
   },
 
   LUCK: {
@@ -289,8 +338,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Bearish technical setup needs confirmation of base",
         "Coal price volatility could pressure margins",
       ],
+      supportingNews: [
+        { headline: "Federal budget could include infrastructure stimulus", source: "Dawn" },
+        { headline: "Lucky Cement maintains FY24 EBITDA guidance despite volume softness", source: "Business Recorder" },
+      ],
+      riskNews: [
+        { headline: "Cement dispatches fall 8% YoY in April amid weak construction", source: "Tribune" },
+      ],
       timeHorizon: "12+ months — wait for catalyst",
     },
+    intel: [
+      {
+        summary: "Lucky Cement's Iraq subsidiary secured a 200,000-tonne export contract with the Iraqi Ministry of Construction",
+        source: "LUCK Q2-2025 Directors' Report, p.8 ¶5",
+        date: "Nov 2025",
+        criticality: "Price-Moving",
+        detail: "The contract was disclosed only in the directors' narrative, not in the financial tables. At current export pricing, this adds ~PKR 1.8B to annual revenue — roughly 4% of Lucky's FY25 topline. No analyst has modeled this.",
+      },
+    ],
   },
 
   SYS: {
@@ -364,8 +429,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Premium multiple sensitive to growth deceleration",
         "PKR appreciation reduces USD-denominated revenue value",
       ],
+      supportingNews: [
+        { headline: "IT exports hit record $3.2B run-rate on SEZ momentum", source: "Dawn" },
+        { headline: "SYS Q1 revenue +26% YoY; margin guidance maintained", source: "Business Recorder" },
+      ],
+      riskNews: [
+        { headline: "PKR appreciation trims IT export competitiveness vs India", source: "Tribune" },
+      ],
       timeHorizon: "12–24 months",
     },
+    intel: [
+      {
+        summary: "Systems Limited quietly established a Dubai DIFC entity to pursue GCC banking contracts directly",
+        source: "SYS Annual Report 2025, p.19 ¶2 (Corporate Structure section)",
+        date: "Feb 2025",
+        criticality: "Price-Moving",
+        detail: "The DIFC subsidiary is licensed for financial technology consulting. Several GCC banks are known to be evaluating Pakistani IT vendors post-normalization. A single Tier-1 GCC bank contract would represent ~15% revenue upside. Not yet in any analyst's addressable market estimate.",
+      },
+    ],
   },
 
   OGDC: {
@@ -435,8 +516,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Circular debt accumulation despite resolution promises",
         "Oil price volatility — Brent below $75 changes thesis",
       ],
+      supportingNews: [
+        { headline: "IMF tranche reduces circular debt risk — OGDC direct beneficiary", source: "Tribune" },
+        { headline: "Brent +2.1% on supply cut signals", source: "Reuters" },
+      ],
+      riskNews: [
+        { headline: "Circular debt stock still rising despite government pledges", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months",
     },
+    intel: [
+      {
+        summary: "OGDC's Nashpa field production test showed 28% higher-than-expected gas flow rates in a secondary zone",
+        source: "OGDC Q3-2025 Operational Update, p.14 ¶6",
+        date: "Jan 2026",
+        criticality: "Price-Moving",
+        detail: "The secondary reservoir test results were buried in the operational update's technical annexure. Independent reserve auditors have not yet restated OGDC's 2P reserves to reflect the new zone — implying the stock may be undervalued on an asset basis by 8–12%.",
+      },
+    ],
   },
 
   MCB: {
@@ -506,8 +603,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Lagging sector earnings growth on conservative lending",
         "Trades at sector P/E despite ROE premium — fully valued",
       ],
+      supportingNews: [
+        { headline: "SBP rate hold preserves MCB NIM at 5.6%", source: "Dawn" },
+        { headline: "MCB announces PKR 8 interim dividend", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "MCB loan growth trails sector peers by 200bps", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months · for yield",
     },
+    intel: [
+      {
+        summary: "MCB's Islamic window (MCB Islamic) applied for a full standalone banking licence — not mentioned in investor communications",
+        source: "SBP Licensing Applications Register, Feb 2026",
+        date: "Feb 2026",
+        criticality: "Price-Moving",
+        detail: "A standalone Islamic bank would allow MCB to target the rapidly growing Islamic deposit pool (now 25% of sector). Conversion of the Islamic window to a full subsidiary could unlock significant CASA growth. Market has not priced this optionality.",
+      },
+    ],
   },
 
   MEBL: {
@@ -578,8 +691,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Valuation premium sensitive to growth deceleration",
         "Sharia-board regulatory changes could impact product mix",
       ],
+      supportingNews: [
+        { headline: "SBP rate hold boosts Meezan CASA franchise value", source: "Dawn" },
+        { headline: "MEBL Q1 net profit up 22% — Islamic banking captures market share", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "SBP consultation on Sharia-compliance standards could require product changes", source: "Business Recorder" },
+      ],
       timeHorizon: "12–18 months",
     },
+    intel: [
+      {
+        summary: "Meezan Bank signed an MoU with Nayapay to offer Shariah-compliant BNPL via Nayapay's merchant network",
+        source: "MEBL Board Minutes, Dec 2025, p.6",
+        date: "Dec 2025",
+        criticality: "Watch",
+        detail: "The BNPL partnership would give Meezan access to Nayapay's 500K+ merchant base for Islamic micro-financing. First-mover advantage in Sharia-compliant BNPL at scale; no other bank has announced a comparable arrangement.",
+      },
+    ],
   },
 
   PPL: {
@@ -649,8 +778,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Circular debt accumulation despite resolution promises",
         "Brent below $75 changes the dividend cover math",
       ],
+      supportingNews: [
+        { headline: "IMF tranche accelerates circular debt resolution plan", source: "Tribune" },
+        { headline: "Brent +2.1% on OPEC supply cut signals", source: "Reuters" },
+      ],
+      riskNews: [
+        { headline: "Circular debt receivables still growing at PPL", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months",
     },
+    intel: [
+      {
+        summary: "PPL's Ziarat block appraisal well struck a gas column 40% larger than pre-drill estimate",
+        source: "PPL Q2-2026 Quarterly Accounts, Note 8 (Exploration), p.22",
+        date: "Oct 2025",
+        criticality: "Price-Moving",
+        detail: "The Ziarat discovery was disclosed as a note to the exploration expenditure, not in the headline operational commentary. Independent geologists estimate the find could add 80–100 mmcfd of production over 3 years — worth ~PKR 12–15 per share in NPV terms at current gas prices.",
+      },
+    ],
   },
 
   FFC: {
@@ -718,8 +863,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Gas pricing revision could compress margins",
         "Slower EPS growth than sector — limits upside",
       ],
+      supportingNews: [
+        { headline: "Gas subsidy rationalisation plan shelved for current fiscal year", source: "Dawn" },
+        { headline: "FFC maintains PKR 8.5 interim dividend — yield remains compelling", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "OGRA gas price review may increase FFC feedstock costs by 12%", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months · for yield + quality",
     },
+    intel: [
+      {
+        summary: "FFC's Bin Qasim port terminal quietly expanded capacity to handle DAP imports for third parties — a new revenue stream",
+        source: "FFC Annual Report 2025, p.47 ¶4 (Infrastructure Assets)",
+        date: "Apr 2025",
+        criticality: "Watch",
+        detail: "The terminal expansion was disclosed only in the fixed asset register notes. Third-party handling fees could add PKR 200–300M annually — small but pure-margin income with no incremental capex.",
+      },
+    ],
   },
 
   UBL: {
@@ -788,8 +949,24 @@ export const signalsByTicker: Record<string, SignalsProfile> = {
         "Minimum saving rate review could pressure deposit margins",
         "Technical setup less explosive than MEBL — slower upside",
       ],
+      supportingNews: [
+        { headline: "SBP rate hold supports UBL fee income and NIM stability", source: "Dawn" },
+        { headline: "UBL GCC remittance volumes up 18% — international franchise growing", source: "Tribune" },
+      ],
+      riskNews: [
+        { headline: "Minimum saving rate floor under SBP review — deposit margin risk", source: "Business Recorder" },
+      ],
       timeHorizon: "12 months · for income",
     },
+    intel: [
+      {
+        summary: "UBL's UAE subsidiary received a provisional approval to launch a digital-only branch in Abu Dhabi Global Market (ADGM)",
+        source: "UBL Q1-2026 Directors' Report, p.9 ¶3",
+        date: "Jan 2026",
+        criticality: "Price-Moving",
+        detail: "The ADGM digital branch would allow UBL to serve GCC-based Pakistani diaspora with onshore accounts, reducing reliance on informal remittance channels. Potential to capture 5–8% of the $8B Pakistan-UAE remittance corridor in 3 years. Disclosed only in the narrative section, not in financial highlights.",
+      },
+    ],
   },
 };
 

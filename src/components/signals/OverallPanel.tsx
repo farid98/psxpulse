@@ -88,9 +88,7 @@ export function OverallPanel({ data }: { data: SignalsProfile }) {
           <div className="bg-white border border-stone-200/80 rounded-lg overflow-hidden">
             <div className="px-5 py-3 border-b border-stone-100 flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-              <h3 className="text-[12px] font-semibold text-stone-900 tracking-[-0.01em]">
-                Strengths
-              </h3>
+              <h3 className="text-[12px] font-semibold text-stone-900 tracking-[-0.01em]">Strengths</h3>
             </div>
             <div className="px-5 py-3 space-y-2.5">
               {data.overall.strengths.map((s, i) => (
@@ -105,9 +103,7 @@ export function OverallPanel({ data }: { data: SignalsProfile }) {
           <div className="bg-white border border-stone-200/80 rounded-lg overflow-hidden">
             <div className="px-5 py-3 border-b border-stone-100 flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-red-400 rounded-full" />
-              <h3 className="text-[12px] font-semibold text-stone-900 tracking-[-0.01em]">
-                Risks
-              </h3>
+              <h3 className="text-[12px] font-semibold text-stone-900 tracking-[-0.01em]">Risks</h3>
             </div>
             <div className="px-5 py-3 space-y-2.5">
               {data.overall.risks.map((r, i) => (
@@ -118,7 +114,42 @@ export function OverallPanel({ data }: { data: SignalsProfile }) {
               ))}
             </div>
           </div>
+
+          <div className="bg-emerald-50 border border-emerald-100 rounded-lg overflow-hidden">
+            <div className="px-5 py-3 border-b border-emerald-100">
+              <h3 className="text-[12px] font-semibold text-emerald-900 tracking-[-0.01em]">News backing this view</h3>
+            </div>
+            <div className="px-5 py-3 space-y-2.5">
+              {data.overall.supportingNews.map((n, i) => (
+                <div key={i} className="flex gap-2.5">
+                  <span className="text-[10px] font-bold text-emerald-600 mt-0.5 shrink-0">↑</span>
+                  <div>
+                    <p className="text-[12px] text-stone-700 leading-snug">{n.headline}</p>
+                    <p className="text-[10px] text-emerald-700 font-medium mt-0.5">{n.source}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-red-50 border border-red-100 rounded-lg overflow-hidden">
+            <div className="px-5 py-3 border-b border-red-100">
+              <h3 className="text-[12px] font-semibold text-red-900 tracking-[-0.01em]">News flagging risk</h3>
+            </div>
+            <div className="px-5 py-3 space-y-2.5">
+              {data.overall.riskNews.map((n, i) => (
+                <div key={i} className="flex gap-2.5">
+                  <span className="text-[10px] font-bold text-red-500 mt-0.5 shrink-0">↓</span>
+                  <div>
+                    <p className="text-[12px] text-stone-700 leading-snug">{n.headline}</p>
+                    <p className="text-[10px] text-red-600 font-medium mt-0.5">{n.source}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   );
